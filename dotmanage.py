@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 
@@ -11,7 +12,7 @@ def _check_git():
 
 def init():
     if not _check_git():
-        return False
+        sys.exit(1)
 
     print('Your dotfiles remote repository')
     print('e.g. git@github.com:BlueSheep2804/dotfiles')
@@ -28,5 +29,15 @@ def init():
     print('Initialize successfully.')
 
 
+def link():
+    print('Create symbolic link.')
+
+    print('Target user home directory')
+    print(f'[{os.environ['HOME']}]')
+    print('Are you sure?')
+    inp = input('[y/N]>> ')
+    if inp != 'y':
+        sys.exit(1)
+
+
 print(sys.argv)
-init()
