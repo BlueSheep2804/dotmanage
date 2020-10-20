@@ -1,4 +1,5 @@
 import subprocess as subproc
+import subprocess
 import sys
 
 
@@ -18,6 +19,14 @@ def init():
     remote_uri = input('>> ')
     if not remote_uri:
         sys.exit(1)
+    subprocess.call(f'git remote set-url origin {remote_uri}', shell=True)
+
+    if subprocess.check_output('git remote get-url origin', shell=True) == remote_uri:
+        print('OK')
+    else:
+        sys.exit(1)
+
+    print('Initialize successfully.')
 
 
 print(sys.argv)
