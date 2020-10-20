@@ -1,10 +1,9 @@
-import subprocess as subproc
 import subprocess
 import sys
 
 
 def _check_git():
-    if subproc.call('which git', shell=True) == 0:
+    if subprocess.call('which git', shell=True) == 0:
         return True
     else:
         return False
