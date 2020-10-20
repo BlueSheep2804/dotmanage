@@ -33,7 +33,7 @@ def link():
     print('Create symbolic link.')
 
     print('Target user home directory')
-    print(f'[{os.environ['HOME']}]')
+    print(f'{os.environ["HOME"]}')
     print('Are you sure?')
     inp = input('[y/N]>> ')
     if inp != 'y':
@@ -41,3 +41,4 @@ def link():
 
 
 print(sys.argv)
+link()
