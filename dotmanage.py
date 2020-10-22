@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def _check_git():
-    if subprocess.call('which git', shell=True) == 0:
+    if subprocess.call('type git', shell=True) == 0:
         return True
     else:
         return False
@@ -67,4 +67,8 @@ def link():
 
 
 print(sys.argv)
-link()
+
+if sys.argv[1] == 'init':
+    init()
+elif sys.argv[1] == 'link':
+    link()
