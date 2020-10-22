@@ -44,7 +44,7 @@ def link():
 
     files = Path('./home/').glob('**/*')
 
-    for f in files:  # TODO: ファイル存在時の例外をキャッチする
+    for f in files:
         target_file = Path(f'{str(home_files)}/{str(f)[5:]}')
         print(f.resolve())
         print(target_file)
@@ -63,7 +63,7 @@ def link():
                     print('Create backup...')
                     target_file.replace(f'{target_file}.backup')
                     print(f'Create {target_file.name}.backup successfully.')
-            os.symlink(f.resolve(), target_file)
+            target_file.symlink_to(f.resolve())
 
 
 print(sys.argv)
