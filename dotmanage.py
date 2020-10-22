@@ -45,14 +45,25 @@ def link():
     files = Path('./home/').glob('**/*')
 
     for f in files:  # TODO: ファイル存在時の例外をキャッチする
+        target_file = Path(f'{str(home_files)}/{str(f)[5:]}')
         print(f.resolve())
-        print(f'{str(home_files)}/{str(f)[5:]}')
+        print(target_file)
         if f.is_dir():
             os.makedirs(f'{str(home_files)}/{f.name}', exist_ok=True)
         elif f.is_file():
-            pass
-            os.symlink(f.resolve(), f'{str(home_files)}/{str(f)[5:]}')
-
+            if target_file.exists():
+                if target_file.is_symlink():
+                    target_file.unlink()
+                else:
+                    print(f'{target_file} is exists.')
+                    print('Replace it?')
+                    inp = input('[Y/n]>> ')
+                    if inp == 'n':
+                        continue
+                    print('Create backup...')
+                    target_file.replace(f'{target_file}.backup')
+                    print(f'Create {target_file.name}.backup successfully.')
+            os.symlink(f.resolve(), target_file)
 
 
 print(sys.argv)
