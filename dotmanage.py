@@ -46,8 +46,6 @@ def link():
 
     for f in files:
         target_file = Path(f'{str(home_files)}/{str(f)[5:]}')
-        print(f.resolve())
-        print(target_file)
         if f.is_dir():
             os.makedirs(f'{str(home_files)}/{f.name}', exist_ok=True)
         elif f.is_file():
@@ -58,12 +56,14 @@ def link():
                     print(f'{target_file} is exists.')
                     print('Replace it?')
                     inp = input('[Y/n]>> ')
+                    print('\033[3A\033[K', end='')
                     if inp == 'n':
+                        print(f'\033[36m[SKIP]\033[0m {target_file}')
                         continue
-                    print('Create backup...')
                     target_file.replace(f'{target_file}.backup')
-                    print(f'Create {target_file.name}.backup successfully.')
+                    print(f'\033[34m[BACKUP]\033[0m {target_file}.backup')
             target_file.symlink_to(f.resolve())
+            print(f'\033[32m[LINK]\033[0m {target_file}')
 
 
 print(sys.argv)
