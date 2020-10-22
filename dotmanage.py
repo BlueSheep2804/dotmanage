@@ -47,7 +47,7 @@ def link():
     for f in files:
         target_file = Path(f'{str(home_files)}/{str(f)[5:]}')
         if f.is_dir():
-            os.makedirs(f'{str(home_files)}/{f.name}', exist_ok=True)
+            os.makedirs(f'{target_file}', exist_ok=True)
         elif f.is_file():
             if target_file.exists():
                 if target_file.is_symlink():
