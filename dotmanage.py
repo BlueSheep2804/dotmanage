@@ -56,7 +56,7 @@ def link():
                     print(f'{target_file} is exists.')
                     print('Replace it?')
                     inp = input('[Y/n]>> ')
-                    print('\033[3A\033[K', end='')
+                    _print_lineback(3)
                     if inp == 'n':
                         print(f'\033[36m[SKIP]\033[0m {target_file}')
                         continue
@@ -64,6 +64,11 @@ def link():
                     print(f'\033[34m[BACKUP]\033[0m {target_file}.backup')
             target_file.symlink_to(f.resolve())
             print(f'\033[32m[LINK]\033[0m {target_file}')
+
+
+def _print_lineback(back_count: int):
+    for i in range(back_count):
+        print('\033[A\033[K', end='')
 
 
 print(sys.argv)
