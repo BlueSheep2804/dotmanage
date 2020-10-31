@@ -74,6 +74,23 @@ def version():
     print(' v0.0')
 
 
+def help():
+    version()
+    print()
+
+    _print_color('init', 32)
+    print(': Initialize dotfiles git repository')
+
+    _print_color('link', 32)
+    print(': Link dotfiles')
+
+    _print_color('version', 32)
+    print(': Show dotmanage.py version')
+
+    _print_color('help', 32)
+    print(': Show this help message')
+
+
 def _print_lineback(back_count: int):
     for i in range(back_count):
         print('\033[A\033[K', end='')
@@ -89,3 +106,5 @@ elif sys.argv[1] == 'link':
     link()
 elif sys.argv[1] == 'version':
     version()
+elif sys.argv[1] == 'help':
+    help()
