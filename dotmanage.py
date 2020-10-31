@@ -69,6 +69,11 @@ def link():
             print(f' {target_file}')
 
 
+def version():
+    _print_color('dotmanage.py', 36)
+    print(' v0.0')
+
+
 def _print_lineback(back_count: int):
     for i in range(back_count):
         print('\033[A\033[K', end='')
@@ -78,9 +83,9 @@ def _print_color(string: str, color: int):
     print(f'\033[{color}m{string}\033[0m', end='')
 
 
-print(sys.argv)
-
 if sys.argv[1] == 'init':
     init()
 elif sys.argv[1] == 'link':
     link()
+elif sys.argv[1] == 'version':
+    version()
