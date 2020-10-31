@@ -71,7 +71,7 @@ def link():
 
 def version():
     _print_color('dotmanage.py', 36)
-    print(' v0.0')
+    print(' v0.1')
 
 
 def help():
